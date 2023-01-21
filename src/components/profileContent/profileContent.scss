@@ -1,0 +1,17 @@
+.profile_content {
+  width: 40%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  &__item + .profile_content__item {
+    border-top: 1px solid $light-gray;
+  }
+}

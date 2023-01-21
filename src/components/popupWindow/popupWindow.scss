@@ -1,0 +1,39 @@
+.popup {
+  position: absolute;
+  padding: 15px;
+  box-shadow: 0 0 6px rgba(0 0 0 / 34%);
+  border-radius: 12px;
+  background-color: $white;
+  z-index: 100;
+
+  &_item {
+    display: flex;
+    align-items: center;
+
+    &__img {
+      width: 22px;
+      height: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      border-radius: 50%;
+      border: 1.5px solid $yellow;
+    }
+
+    &__title {
+      line-height: 14px;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 0.1px;
+    }
+
+    + .popup_item {
+      margin-top: 16px;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

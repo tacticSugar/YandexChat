@@ -1,11 +1,9 @@
 {
-  "customSyntax":"postcss-less",
-  "extends": "stylelint-config-standard",
+  "extends": "stylelint-config-standard-scss",
+  "ignoreFiles": "dist/*",
   "rules": {
-    "color-function-notation": null,
-    "selector-class-pattern": null
-  },
-  "ignoreFiles": [
-    "dist/*"
-  ]
+    "selector-class-pattern": ".([a-z]+)(?:_[a-z]+)?$",
+    "scss/at-mixin-pattern": "^[a-zA-Z]?(-{0,2}[a-zA-Z]+)*$",
+    "value-no-vendor-prefix": null
+  }
 }

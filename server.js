@@ -1,18 +1,13 @@
-const path = require("path");
-const express = require("express");
+const express = require('express');
+const fallback = require('express-history-api-fallback');
 
-const PORT = process.env.PORT || 3000;
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(`${__dirname}/dist/`));
+app.use(fallback('./dist/index.html', { root: __dirname }));
 
-app.use("/*", (req, res) => {
-  res.redirect("/");
+app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Server has been started on ${PORT} port`);
 });
-
-app.get("/", function (req, res) {
-  res.setHeader("Content-Type", "application/json");
-  res.status(200).sendFile(__dirname + "/src/index.html");
-});
-
-app.listen(PORT, () => console.log(`App is ready on port ${PORT}`));

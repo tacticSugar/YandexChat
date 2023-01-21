@@ -1,0 +1,6 @@
+.profile_edit {
+  @include profileRedactorForm(
+    $margin_top: 50px,
+    $margin_top_button: 50px
+  );
+}

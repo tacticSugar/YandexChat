@@ -1,38 +1,65 @@
-import './index.less'
-import { Router } from './utils/core/Router'
-import { ErrorPage } from './pages/errors/error'
-import { ProfilePage } from './pages/profile/profile'
-import { ChangeProfilePage } from './pages/change-profile/changeProfile'
-import { ChangePasswordPage } from './pages/change-password/change-password'
-import { SignInPage } from './pages/sing-in/login'
-import { SignUpPage } from './pages/sign-up/sing-up'
-import { ChatsPage } from './pages/chats/chats'
-import { checkAuth } from './helpers/checkers/authCheck'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Chat } from './pages/chat';
+import { Profile } from './pages/profile';
+import { ChangeProfile } from './pages/profile/change';
+import { PasswordProfile } from './pages/profile/password';
+import { SignIn } from './pages/signIn';
+import { SignUp } from './pages/signUp';
+import { Error404 } from './pages/error404';
+import { Error500 } from './pages/error500';
+import { router } from './router';
+import AuthController from './controllers/AuthController';
+import ChatsController from './controllers/ChatsController';
+import Block from './utils/Block';
+import './index.scss';
 
-export enum routs {
-  signUpPage = '/sign-up',
-  changeProfilePage = '/settings',
-  chatsPage = '/messenger',
-  signInPage = '/sign-in',
-  changePasswordPage = '/change-password',
-  profilePage = '/profile',
-  errorPage = '/error',
+export enum Routes {
+  Index = '/',
+  Signup = '/sign-up',
+  Messenger = '/messenger',
+  Settings = '/settings',
+  SettingsChange = '/settings/change',
+  SettingsPassword = '/settings/password',
+  Error4 = '/error404',
+  Error5 = '/error500'
 }
 
-// @ts-ignore какая-то странная ошибка Cannot redeclare exported variable 'MyRouter', в гугле ничего толкового не нашёл
-export const MyRouter = new Router()
-MyRouter.use(routs.signUpPage, SignUpPage, false)
-  .use(routs.profilePage, ProfilePage, true, {
-    login: 'unknown',
-    shortName: 'unknown',
-    fullName: 'unknown',
-    email: 'unknown',
-    phone: 'unknown',
-  })
-  .use(routs.changeProfilePage, ChangeProfilePage, true)
-  .use(routs.chatsPage, ChatsPage, true)
-  .use(routs.signInPage, SignInPage, false)
-  .use(routs.changePasswordPage, ChangePasswordPage, true)
-  .use(routs.errorPage, ErrorPage, false, { errorNumber: 404 })
-  .start()
-checkAuth()
+window.addEventListener('DOMContentLoaded', async () => {
+  router
+    .use(Routes.Index, SignIn)
+    .use(Routes.Signup, SignUp)
+    .use(Routes.Error4, Error404)
+    .use(Routes.Error5, Error500);
+
+  let isProtectedRoute = true;
+
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Signup:
+      isProtectedRoute = false;
+      break;
+    default:
+      break;
+  }
+
+  try {
+    await AuthController.fetchUser();
+    await ChatsController.fetchChats();
+    router
+      .use(Routes.Messenger, Chat)
+      .use(Routes.Settings, Profile as unknown as typeof Block)
+      .use(Routes.SettingsChange, ChangeProfile)
+      .use(Routes.SettingsPassword, PasswordProfile)
+      .start();
+
+    if (!isProtectedRoute) {
+      router.go(Routes.Messenger);
+    }
+  } catch (e) {
+    router.start();
+
+    if (isProtectedRoute) {
+      router.go(Routes.Index);
+    }
+  }
+});

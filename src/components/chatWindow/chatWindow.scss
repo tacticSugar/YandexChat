@@ -1,0 +1,14 @@
+.chat_window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 25px 20px 0;
+
+  &__title {
+    font-weight: 500;
+    font-size: 20px;
+    color: $grayscale;
+  }
+}

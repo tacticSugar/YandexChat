@@ -1,76 +1,83 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
-const CleanWebpackPlugin = require("clean-webpack-plugin").CleanWebpackPlugin;
-const miniSVGDataURI = require("mini-svg-data-uri");
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const mode = process.env.NODE_ENV || 'development';
+const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.ts",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "project-name.bundle.js",
-  },
+  mode,
+  entry: './src/index.ts',
+  devtool: 'cheap-module-source-map',
   resolve: {
-    extensions: [".ts", ".js", ".json"],
-    fallback: {
-      fs: false,
-      os: false,
-      path: require.resolve("path-browserify"),
-      assert: require.resolve("assert/"),
-    },
+    extensions: ['.ts', '.js', '.json'],
+  },
+  output: {
+    filename: '[contenthash].bundle.js',
+    assetModuleFilename: 'assets/[hash][ext][query]',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: ASSET_PATH,
+    clean: true,
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
-        use: [
-          {
-            loader: "ts-loader",
-            options: {
-              configFile: path.resolve(__dirname, "tsconfig.json"),
-            },
-          },
-        ],
+        use: 'ts-loader',
         exclude: /(node_modules)/,
       },
       {
-        test: /\.svg$/,
-        type: "asset/inline",
-        generator: {
-          dataUrl(content) {
-            content = content.toString();
-            return miniSVGDataURI(content);
-          },
-        },
-        use: "svgo-loader",
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource',
       },
       {
-        test: /\.(png|jpe?g)$/i,
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.pug$/,
+        loader: '@webdiscus/pug-loader',
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
         use: [
+          MiniCssExtractPlugin.loader,
           {
-            loader: "file-loader",
+            loader: 'css-loader',
+            options: {
+              sourceMap: false,
+            },
           },
-        ],
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          // compiles Less to CSS
-          "style-loader",
-          "css-loader",
-          "less-loader",
+          'sass-loader',
         ],
       },
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin(),
-    new webpack.ProvidePlugin({
-      process: "process/browser",
+    new HtmlWebpackPlugin({
+      template: 'static/index.html',
+      filename: 'index.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+      },
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
     }),
   ],
+  devServer: {
+    host: '0.0.0.0',
+    hot: true,
+    port: 1234,
+    compress: true,
+    allowedHosts: 'all',
+    historyApiFallback: true,
+  },
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: true,
+  },
 };
-
-// node ./node_modules/.bin/webpack

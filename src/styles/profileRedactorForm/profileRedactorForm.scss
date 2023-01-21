@@ -1,0 +1,47 @@
+@mixin profileRedactorForm($margin_top, $margin_top_button) {
+  width: 40%;
+  margin-top: $margin_top;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    .fieldset {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      font-size: 14px;
+      line-height: 1;
+
+      + .fieldset {
+        border-top: 1px solid $light-gray;
+      }
+
+      input {
+        border: none;
+        text-align: right;
+      }
+
+      span {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        color: $red;
+        font-size: 10px;
+        line-height: 1;
+      }
+    }
+
+    button {
+      margin-top: $margin_top_button;
+      align-self: center;
+      padding: 12px 106px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1;
+      color: $white;
+      background-color: $blue;
+    }
+  }
+}
