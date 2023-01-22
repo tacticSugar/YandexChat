@@ -29,6 +29,12 @@
     "nanoid": "3.3.4",
     "pug": "3.0.2"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint:all",
+      "pre-push": "npm run other command"
+    }
+  },
   "devDependencies": {
     "@types/chai": "4.3.3",
     "@types/jsdom": "20.0.0",
