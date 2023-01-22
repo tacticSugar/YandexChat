@@ -14,8 +14,7 @@
     "docker:dev": "docker compose --file docker-compose.dev.yml up"
   },
   "lint-staged": {
-
-    "*.js": [
+    "*.ts": [
       "eslint --fix"
     ]
   },
