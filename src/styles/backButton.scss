@@ -1,0 +1,28 @@
+.backButton {
+  height: 100%;
+  width: 64px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  border-right: 1px solid $grey;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::before {
+    content: "<-";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    color: $white;
+    background-color: $blue;
+    border-radius: 50%;
+  }
+}

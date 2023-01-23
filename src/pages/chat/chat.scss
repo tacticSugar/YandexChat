@@ -1,0 +1,12 @@
+.chat {
+  height: 100%;
+  display: flex;
+}
+
+.aside {
+  max-width: 24.3%;
+  min-width: 310px;
+  height: 100%;
+  padding-top: 25px;
+  border-right: 1px solid $grey;
+}

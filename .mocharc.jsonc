@@ -1,0 +1,6 @@
+{
+  "diff": true,
+  "extension": ["ts"],
+  "spec": "src/**/*.test.ts",
+  "require": ["./mocha-setup.js", "ts-node/register"]
+}

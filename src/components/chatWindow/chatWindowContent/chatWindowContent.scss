@@ -1,0 +1,21 @@
+.chat_window_content {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-grow: 1;
+  padding: 30px 0;
+  overflow-y: scroll;
+  border-top: 1px solid $light-gray;
+  border-bottom: 1px solid $light-gray;
+
+  &::-webkit-scrollbar {
+    appearance: none;
+    width: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgb(0 0 0 / 10%);
+    box-shadow: 0 0 1px rgb(255 255 255 / 50%);
+  }
+}

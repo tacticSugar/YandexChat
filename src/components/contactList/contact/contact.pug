@@ -1,0 +1,13 @@
+if avatar
+  img(src="", alt="contact avatar", class="contact_img" )
+else
+  div.contact_img
+.contact_content
+  h1.contact_content__title= title
+  if message
+    p.contact_content__message= message
+.contact_info
+  if time
+    p.contact_info__time= time
+  if numUnreadMessages
+    span.contact_info__count= unread_count

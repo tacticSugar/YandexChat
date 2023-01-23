@@ -1,0 +1,30 @@
+.contactList_head {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px 14px;
+
+  &_navi {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &__newChat {
+      font-size: 13px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &__transit {
+      display: block;
+      margin-bottom: 23px;
+      font-size: 12px;
+      color: $grayscale;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.profile_avatar {
+  &_photo {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin-bottom: 21px;
+    background-color: $grey;
+    border-radius: 50%;
+    cursor: pointer;
+
+    img {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    &:hover::before {
+      content: "Поменять\Aаватар";
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 130px;
+      height: 130px;
+      background-color: $green;
+      opacity: 0.6;
+      border-radius: 50%;
+      color: $white;
+      white-space: pre;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+  }
+
+  &_title {
+    text-align: center;
+    font-size: 16px;
+  }
+}

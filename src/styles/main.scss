@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  color: $green;
+  font-family: Inter, sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+}
+
+:link,
+:visited {
+  text-decoration: none;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: none;
+  background-color: inherit;
+}
+
+.container {
+  background: $blue;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.red-text {
+  color: $red !important;
+}

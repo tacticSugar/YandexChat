@@ -1,0 +1,11 @@
+if title
+  h1= title
+each input, index in inputs
+  .fieldset
+    if labels
+      label(for!= Object.keys(labels[index])[0])!= Object.values(labels[index])[0]
+    | !{input}
+    | !{errorsElem[index]}
+button(type="submit")= button
+if redirect
+  | !{link}

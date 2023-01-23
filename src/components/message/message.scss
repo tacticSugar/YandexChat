@@ -1,0 +1,21 @@
+.message {
+  max-width: 43.3%;
+  display: flex;
+  padding: 11px;
+  border-radius: 12px;
+  background-color: $mess;
+  font-size: 12px;
+
+  &_my {
+    align-self: flex-end;
+    background-color: $my-message;
+  }
+
+  &_data {
+    width: max-content;
+    display: block;
+    margin-left: auto;
+    font-size: 9px;
+    color: $grayscale;
+  }
+}

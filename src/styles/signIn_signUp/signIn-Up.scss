@@ -1,0 +1,76 @@
+@mixin signIn-Up($margin_top_button) {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    width: 26.5%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 30px 30px;
+    box-shadow: 0 0 6px rgb(0 0 0 / 35%);
+    border-radius: 12px;
+
+    h1 {
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 20px;
+      color: $grey;
+    }
+
+    .fieldset {
+      height: 52px;
+      line-height: 1;
+
+      label {
+        font-size: 11px;
+        line-height: 1;
+        color: $grayscale;
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid $blue;
+      }
+      textarea:focus,
+      input:focus {
+        outline: none;
+      }
+
+      span {
+        margin-top: 2px;
+        color: $red;
+        font-size: 10px;
+        line-height: 1;
+      }
+    }
+
+    button {
+      margin-top: $margin_top_button;
+      margin-bottom: 14px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      background-color: $green;
+      border: none;
+      border-radius: 8px;
+      color: $white;
+      font-size: 13px;
+      line-height: 1;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .link_signIn_Up {
+      text-align: center;
+      font-size: 14px;
+      color: $light-gray;
+      line-height: 1;
+      cursor: pointer;
+    }
+  }
+}

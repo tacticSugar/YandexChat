@@ -1,0 +1,37 @@
+.chat_window_form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &__clip {
+    width: 32px;
+    height: 32px;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+  &__input {
+    flex-grow: 1;
+    margin: 11px 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background-color: $light-gray;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: end;
+  }
+
+  &__send {
+    width: 28px;
+    height: 28px;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+}
