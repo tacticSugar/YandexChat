@@ -1,6 +1,6 @@
 # Чат
 
-- Опубликованное в Netlify приложение: [https://bucolic-paprenjak-cebd36.netlify.app](https://bucolic-paprenjak-cebd36.netlify.app)
+Опубликованное в Netlify приложение: [https://bucolic-paprenjak-cebd36.netlify.app](https://bucolic-paprenjak-cebd36.netlify.app)
 
 ## Что это?
 
